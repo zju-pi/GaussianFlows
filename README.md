@@ -184,9 +184,9 @@ training pool. Let $W\in\mathbb{R}^{3\times3}$ be the mean within-shape
 spatial covariance and $B\in\mathbb{R}^{3\times3}$ the covariance of shape
 centroids. In coordinate-major layout, the exact covariance is
 
-\[
+```math
 \Sigma = W\otimes I_{2048} + B\otimes \mathbf{1}\mathbf{1}^{\mathsf T}.
-\]
+```
 
 The implementation diagonalizes this structured covariance analytically and
 saves its leading eigenpairs. The canonical setting uses all 6,144 directions
@@ -270,7 +270,7 @@ The plotting space, displayed subset, reference path, and camera angle are the
 only controls in this section.
 
 The RMSE section contains the analytic fitted Gaussian, an isotropic Gaussian
-with covariance $[\operatorname{tr}(\Sigma)/d]I$, the fitted Gaussian's endpoint
+with covariance $[\mathrm{tr}(\Sigma)/d]I$, the fitted Gaussian's endpoint
 chord, and an amplitude-matched Brownian bridge around that chord. Analysis space
 (`vp`/`ve`) is the only exposed RMSE choice. Saved states receive equal weight,
 the common starting point is translated to the origin before fitting one
@@ -301,15 +301,3 @@ Each panel overlays the analytic Gaussian curves, pointwise means of the real
 trajectories, and ten real trajectories selected near the median
 trajectory-wide deviation from the mean.
 
-## Verification
-
-```bash
-python -m compileall -q src tests
-python -m pytest -q tests
-```
-
-The tests use synthetic inputs: they do not download data or run complete
-model sampling. They verify artifact validation, variable trajectory lengths,
-sampling protocols, exact and randomized statistics, explained variance, VP/VE
-conversion, Procrustes alignment, semantic statistics compatibility,
-safe hyperbolic sample selection, and analytic hyperbolic coordinates.
