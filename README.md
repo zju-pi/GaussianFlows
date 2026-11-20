@@ -301,3 +301,14 @@ Each panel overlays the analytic Gaussian curves, pointwise means of the real
 trajectories, and ten real trajectories selected near the median
 trajectory-wide deviation from the mean.
 
+## 5. Citation
+If you find this repository useful, please consider citing the following paper:
+
+```
+@article{chen2026universal,
+  title = {On the Universal Structure in Deterministic Generative Diffusion},
+  author = {Chen, Defang and Zhou, Zhenyu and Wang, Can and Zheng, Zeyu and Lyu, Siwei},
+  journal = {arXiv preprint arXiv:2611.10338},
+  year = {2026},
+}
+```
