@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "universal-trajectories"
+version = "0.1.0"
+description = "Unified diffusion-trajectory sampling and analysis"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.21",
+    "torch>=1.10",
+    "tqdm>=4.60",
+]
+
+[project.optional-dependencies]
+statistics = [
+    "scipy>=1.7",
+    "soundfile>=0.10",
+    "spacy>=3.4",
+]
+notebooks = [
+    "ipykernel>=6",
+    "jupyterlab>=4",
+    "matplotlib>=3.7",
+]
+cifar10 = [
+    "requests>=2.25",
+]
+diffwave = [
+    "einops>=0.6",
+    "hydra-core>=1.2,<1.4",
+    "omegaconf>=2.2,<2.4",
+    "opt-einsum>=3.3",
+    "pykeops>=2.2",
+    "pytorch-lightning>=1.5,<3",
+    "scipy>=1.7",
+]
+diffusion-lm = [
+    # The released Diffusion-LM runtime imports legacy Transformers helpers.
+    # 4.20.1 is the checkpoint environment verified by model construction and forward.
+    "transformers==4.20.1",
+]
+pvd = [
+    "matplotlib>=3.7",
+    "ninja>=1.10",
+]
+download = [
+    "gdown>=6.4.2",
+]
+test = [
+    "pytest>=7",
+]
+
+[project.scripts]
+universal = "universal.cli:main"
+universal-sample-cifar10 = "universal.datasets.cifar10.sample:main"
+universal-sample-diffwave = "universal.datasets.diffwave.sample:main"
+universal-sample-diffusion-lm = "universal.datasets.diffusion_lm.sample:main"
+universal-sample-pvd = "universal.datasets.pvd.sample:main"
+universal-stats = "universal.statistics.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
